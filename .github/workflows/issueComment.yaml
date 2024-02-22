@@ -1,21 +1,27 @@
-name: Issue Commenting
-
+name: Issue commenting
 on:
   issues:
     types: [opened]
 
 jobs:
-  issue_comment:
+  comment:
     runs-on: ubuntu-latest
     steps:
-      - name: GET Github context
-        run: echo '${{ toJson(github.event) }}' | jq
-        shell: bash
-      - name: Create comment
-        uses: peter-evans/create-or-update-comment@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Comment on Issue
+        uses: actions/github-script@v4
         with:
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            Hi there 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueComment = `
+              Hello there! 👋 Thank you for opening this issue. Our team will look into it shortly.
+              Feel free to provide any additional details or context if needed.
+              `;
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: issueComment
+            });
