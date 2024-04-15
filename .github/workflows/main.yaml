@@ -16,6 +16,8 @@ jobs:
 
     - name: Merge development into main
       run: |
+        git config --global user.email withbimatara@gmail.com
+        git config --global user.name Haalloobim
         git checkout dev
         git pull origin dev
         git checkout main
