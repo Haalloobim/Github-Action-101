@@ -7,6 +7,8 @@ on:
 jobs:
   rebase:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v2
       with:
@@ -23,6 +25,6 @@ jobs:
 
     - name: Push rebased main branch
       run: |
-        git push origin main -f
+        git push origin main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

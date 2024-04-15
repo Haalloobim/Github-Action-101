@@ -6,6 +6,9 @@ on:
 jobs:
   comment:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -13,7 +16,7 @@ jobs:
       - name: Comment on Issue
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issueComment = `
               Hello there! 👋 Thank you for opening this issue. Our team will look into it shortly.
