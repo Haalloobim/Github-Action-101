@@ -1,4 +1,4 @@
-name: Triggered Rebase
+name: Triggered Merge No Fast Forward
 
 on:
   push:
@@ -14,16 +14,16 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Rebase development into main
+    - name: Merge development into main
       run: |
         git checkout dev
         git pull origin dev
         git checkout main
-        git rebase dev
+        git merge --no-ff --no-edit dev
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Push rebased main branch
+    - name: Push merged main branch
       run: |
         git push origin main
       env:
