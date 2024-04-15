@@ -5,7 +5,7 @@ on:
     branches: [ dev ]
 
 jobs:
-  rebase:
+  MergeBranches:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -16,6 +16,8 @@ jobs:
 
     - name: Merge development into main
       run: |
+        git config --global user.email withbimatara@gmail.com
+        git config --global user.name Haalloobim
         git checkout dev
         git pull origin dev
         git checkout main
