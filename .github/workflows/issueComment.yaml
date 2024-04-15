@@ -19,8 +19,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issueComment = `
-              Hello there! 👋 Thank you for opening this issue. Our team will look into it shortly.
-              Feel free to provide any additional details or context if needed.
+              Hello there! 👋
+              Thank you for opening this issue. If you see this message thats means the github action works well. 
+              Thank you again for opening the issue, you can close it if you just testing the action.
               `;
             github.issues.createComment({
               issue_number: context.issue.number,
